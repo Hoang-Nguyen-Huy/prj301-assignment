@@ -1,56 +1,44 @@
+package sample.controllers;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sample.controllers;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import sample.shopping.Cart;
 import sample.shopping.Product;
+import sample.shopping.ProductDAO;
 
 /**
  *
  * @author Dell Latitude 7490
  */
-@WebServlet(name = "AddController", urlPatterns = {"/AddController"})
-public class AddController extends HttpServlet {
+@WebServlet(urlPatterns = {"/ShopController"})
+public class ShopController extends HttpServlet {
 
     private static final String ERROR = "shopping.jsp";
-    private static final String SUCCESS = "ShopController";
+    private static final String SUCCESS = "shopping.jsp";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-            String cmbShoes = request.getParameter("cmbShoes");
-            String tmp[] = cmbShoes.split("-");
-            String id = tmp[0];
-            String name = tmp[1];
-            double price = Double.parseDouble(tmp[2]);
-            int quantity = Integer.parseInt(request.getParameter("cmbQuantity"));
-            Product product = new Product(id, name, price, quantity);
-            HttpSession session = request.getSession(true);
-            Cart cart = (Cart) session.getAttribute("CART");
-            if (cart == null) {
-                cart = new Cart();
-            }
-            boolean checkAdd = cart.add(product);
-            if (checkAdd) {
-                session.setAttribute("CART", cart);
-                request.setAttribute("MESSAGE", "You add " + product.getName() + " with quantity: " + product.getQuantity());
+            ProductDAO dao = new ProductDAO();
+            List<Product> listProduct = dao.getListProduct();
+            if (listProduct.size() > 0) {
+                request.setAttribute("LIST_PRODUCT", listProduct);
                 url = SUCCESS;
             }
         } catch(Exception e) {
-            log("Error at AddController: " + e.toString());
+            log("Error at ShopController: " + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

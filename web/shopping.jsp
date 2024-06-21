@@ -4,6 +4,8 @@
     Author     : Dell Latitude 7490
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="sample.shopping.Product"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -17,10 +19,18 @@
         <form action="MainController" method="POST">
             Select your shoes: 
             <select name="cmbShoes">
-                <option value="S01-NIKE-100">NIKE-100$</option>                
-                <option value="S02-Adidas-150">Adidas-150$</option>
-                <option value="S03-Thuong Dinh-50">Thuong Dinh-50$</option>
-                <option value="S04-Bitis-200">Bitis-200$</option>
+                <%
+                    List<Product> listProduct = (List<Product>) request.getAttribute("LIST_PRODUCT");
+                    if (listProduct != null) {
+                        if (listProduct.size() > 0) {
+                            for (Product product : listProduct) {
+                %>
+                <option value="<%= product.getId() %>-<%= product.getName() %>-<%= product.getPrice() %>"><%=product.getId()%>-<%=product.getName()%>-<%=product.getPrice()%>$</option>
+                <%
+                            }
+                        }
+                    } 
+                %>
             </select>
             <select name="cmbQuantity">
                 <option value="1">1</option>                
