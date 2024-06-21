@@ -41,7 +41,7 @@ public class MainController extends HttpServlet {
     private static final String CREATE_CONTROLLER="CreateController";
     
     private static final String SHOPPING_PAGE="Shopping_Page";
-    private static final String SHOPPING_PAGE_VIEW="shopping.html";  
+    private static final String SHOP_CONTROLLER="ShopController";
     
     private static final String ADD="Add";
     private static final String ADD_CONTROLLER="AddController";
@@ -76,7 +76,7 @@ public class MainController extends HttpServlet {
             } else if (CREATE.equals(action)) {
                 url = CREATE_CONTROLLER;
             } else if (SHOPPING_PAGE.equals(action)) {
-                url = SHOPPING_PAGE_VIEW;
+                url = SHOP_CONTROLLER;
             } else if (ADD.equals(action)) {
                 url = ADD_CONTROLLER;
             } else if (VIEW.equals(action)) {
