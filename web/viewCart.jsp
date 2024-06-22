@@ -71,5 +71,7 @@
             }
         %>
         <a href="MainController?action=Shopping_Page">Add more !</a>
+        <a href="MainController?action=Checkout">Check out !</a>
+
     </body>
 </html>
