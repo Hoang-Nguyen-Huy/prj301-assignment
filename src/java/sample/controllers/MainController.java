@@ -55,6 +55,9 @@ public class MainController extends HttpServlet {
     private static final String EDIT="Edit";
     private static final String EDIT_CONTROLLER="EditController";
     
+    private static final String CHECK_OUT="Checkout";
+    private static final String CHECK_OUT_CONTROLLER="CheckoutController";
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -85,6 +88,8 @@ public class MainController extends HttpServlet {
                 url = REMOVE_CONTROLLER;
             } else if (EDIT.equals(action)) {
                 url = EDIT_CONTROLLER;
+            } else if (CHECK_OUT.equals(action)) {
+                url = CHECK_OUT_CONTROLLER;
             }
         } catch(Exception e) {
             log("Error at MainControlller: " + e.toString());

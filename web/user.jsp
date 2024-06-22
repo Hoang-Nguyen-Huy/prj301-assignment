@@ -25,7 +25,9 @@
         <br> FullName <%= user.getFullName() %>
         </br> RoleID: <%= user.getRoleID() %>
         </br> Password: <%= user.getPassword() %>
-        
-
+            
+        <form action="MainController" method="POST">
+            <input type="submit" name="action" value="View"/>
+        </form>
     </body>
 </html>
