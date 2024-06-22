@@ -20,6 +20,8 @@ import sample.utils.DBUtils;
 public class ProductDAO {
     
     private static final String GET = "SELECT productID, name, price, quantity FROM products";
+    private static final String GET_QUANTITY = "SELECT quantity FROM products WHERE productID = ?";
+    private static final String UPDATE_QUANTITY = "UPDATE products SET quantity = ? WHERE productID = ?";
 
     public List<Product> getListProduct() throws SQLException, ClassNotFoundException {
         List<Product> list = new ArrayList<>();
@@ -46,6 +48,67 @@ public class ProductDAO {
             if (conn != null) conn.close();
         }
         return list;
+    }
+
+    public boolean checkQuantity(String id, int quantity) throws SQLException, ClassNotFoundException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(GET_QUANTITY);
+                ptm.setString(1, id);
+                rs = ptm.executeQuery();
+                if (rs.next()) {
+                    int quantityFromDB = rs.getInt("quantity");
+                    if (quantityFromDB >= quantity) {
+                        check = true;
+                    }
+                }
+            }   
+        } finally {
+            if (rs != null) rs.close();
+            if (ptm != null) ptm.close();
+            if (conn != null) conn.close();
+        }
+        return check;
+    }
+
+    public boolean updateQuantity(String productID, int quantity) throws ClassNotFoundException, SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                // Step 1: Get the current quantity from the database
+                ptm = conn.prepareStatement(GET_QUANTITY);
+                ptm.setString(1, productID);
+                rs = ptm.executeQuery();
+                int currentQuantity = 0;
+                if (rs.next()) {
+                    currentQuantity = rs.getInt("quantity");
+                }
+
+                // Step 2: Calculate the new quantity
+                int newQuantity = currentQuantity - quantity;
+
+                // Step 3: Update the quantity in the database
+                ptm.close();
+                ptm = conn.prepareStatement(UPDATE_QUANTITY);
+                ptm.setInt(1, newQuantity);
+                ptm.setString(2, productID);
+                check = ptm.executeUpdate() > 0;
+            }   
+        } finally {
+            if (rs != null) rs.close();
+            if (ptm != null) ptm.close();
+            if (conn != null) conn.close();
+        }
+        return check;
     }
     
     
