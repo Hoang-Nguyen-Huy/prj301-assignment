@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class MainController extends HttpServlet {
 
-    private static final String WELCOME="login.html";
+    private static final String WELCOME="login.jsp";
     
     private static final String LOGIN="Login";
     private static final String LOGIN_CONTROLLER="LoginController";
@@ -35,7 +35,7 @@ public class MainController extends HttpServlet {
     private static final String UPDATE_CONTROLLER="UpdateController";
     
     private static final String CREATE_PAGE="Create_Page";
-    private static final String CREATE_PAGE_VIEW="create.html";
+    private static final String CREATE_PAGE_VIEW="create.jsp";
     
     private static final String CREATE="Create";
     private static final String CREATE_CONTROLLER="CreateController";

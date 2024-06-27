@@ -16,7 +16,7 @@
     </head>
     <body>
         <c:if test="${sessionScope.LOGIN_USER == null || sessionScope.LOGIN_USER.roleID ne 'AD'}">
-            <c:redirect url="login.html"></c:redirect>
+            <c:redirect url="login.jsp"></c:redirect>
         </c:if>
         <h1> Welcome: ${sessionScope.LOGIN_USER.fullName}</h1>
         <c:url var="logoutLink" value="MainController">
