@@ -30,14 +30,8 @@ and open the template in the editor.
                 </button>
             </div>
 
-            <%
-                String error = (String) request.getAttribute("ERROR");
-                if (error == null) {
-                    error = "";
-                }
-            %>
             <div class="col-md-12 error-message">
-                <%= error %>
+                ${requestScope.ERROR}
             </div>
 
             <div class="row infomationform">

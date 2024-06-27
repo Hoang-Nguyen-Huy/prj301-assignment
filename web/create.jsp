@@ -7,27 +7,21 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>User page</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <%
-            UserError userError = (UserError) request.getAttribute("USER_ERROR");
-            if (userError == null) {
-                userError = new UserError();
-            }
-        %>
         <div>Create new User</div>
         <form action="MainController" method="POST">
-            User ID<input type="text" name="userID" required=""/><%= userError.getUserIDError() %>
-            </br>Full Name<input type="text" name="fullName" required=""/><%= userError.getFullNameError() %>
+            User ID<input type="text" name="userID" required=""/>${requestScope.USER_ERROR.userIDError}
+            </br>Full Name<input type="text" name="fullName" required=""/>${requestScope.USER_ERROR.fullNameError}
             </br>Role ID<input type="text" name="roleID" value="US" required="" readonly=""/>
             </br>Password<input type="password" name="password" required=""/>
-            </br>Confirm<input type="password" name="confirm" required=""/><%= userError.getConfirmError() %>
+            </br>Confirm<input type="password" name="confirm" required=""/>${requestScope.USER_ERROR.confirmError}
             </br><input type="submit" name="action" value="Create"/>
             <input type="reset" value="Reset"/>  
-            <%= userError.getError() %>
+            ${requestScope.USER_ERROR.error}
         </form>
     </body>
 </html>
