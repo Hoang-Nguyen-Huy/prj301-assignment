@@ -4,6 +4,7 @@
     Author     : Dell Latitude 7490
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.util.List"%>
 <%@page import="sample.shopping.Product"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -19,18 +20,9 @@
         <form action="MainController" method="POST">
             Select your shoes: 
             <select name="cmbShoes">
-                <%
-                    List<Product> listProduct = (List<Product>) request.getAttribute("LIST_PRODUCT");
-                    if (listProduct != null) {
-                        if (listProduct.size() > 0) {
-                            for (Product product : listProduct) {
-                %>
-                <option value="<%= product.getId() %>-<%= product.getName() %>-<%= product.getPrice() %>"><%=product.getId()%>-<%=product.getName()%>-<%=product.getPrice()%>$</option>
-                <%
-                            }
-                        }
-                    } 
-                %>
+                <c:forEach var="product" items="${requestScope.LIST_PRODUCT}">
+                    <option value="${product.getId()}-${product.getName()}-${product.getPrice()}">${product.getId()}-${product.getName()}-${product.getPrice()}$</option>
+                </c:forEach>
             </select>
             <select name="cmbQuantity">
                 <option value="1">1</option>                
@@ -44,12 +36,6 @@
             <input type="submit" name="action" value="Add"/>
             <input type="submit" name="action" value="View"/>
         </form>
-        <% 
-            String message = (String) request.getAttribute("MESSAGE");
-            if (message == null) {
-                message = "";
-            }
-        %>      
-        <%=  message %>
+        ${requestScope.MESSAGE}
     </body>
 </html>
