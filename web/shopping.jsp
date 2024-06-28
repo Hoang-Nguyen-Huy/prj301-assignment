@@ -23,7 +23,7 @@
             <!--header of the page start here-->
             <div id="header">
                 <!--Navigate-->
-                <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
                     <div class="container-fluid">
                         <!--Logo-->
                         <a class="navbar-brand" href="#">
@@ -75,7 +75,7 @@
 
                                 <button class="btn btn-outline-success ms-2" type="submit" name="action" value="View">                                    
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
-                                        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+                                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
                                     </svg>
                                 </button>
                             </form>
@@ -86,6 +86,30 @@
                 <!--Navigation-->
             </div>
             <!--header of the page end here-->
+
+            <!--carousel of the page start here-->
+            <div id="carouselFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="https://wallpapers.com/images/hd/adidas-painted-running-shoes-4quwe21ymne5ing3.jpg" class="d-block w-100" alt="Addidas">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://wallpapercave.com/wp/DIqJBN7.jpg" class="d-block w-100" alt="Nike">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://wallpapercave.com/wp/wp2631927.jpg" class="d-block w-100" alt="Vans">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselFade" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselFade" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+            <!--carousel of the page end here-->
 
             <form action="MainController" method="POST">
                 Select your shoes: 
