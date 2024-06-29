@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.naming.NamingException;
 import sample.utils.DBUtils;
 
 /**
@@ -23,7 +24,7 @@ public class ProductDAO {
     private static final String GET_QUANTITY = "SELECT quantity FROM products WHERE productID = ?";
     private static final String UPDATE_QUANTITY = "UPDATE products SET quantity = ? WHERE productID = ?";
 
-    public List<Product> getListProduct() throws SQLException, ClassNotFoundException {
+    public List<Product> getListProduct() throws SQLException, ClassNotFoundException, NamingException {
         List<Product> list = new ArrayList<>();
         Connection conn = null;
         PreparedStatement ptm = null;
@@ -50,7 +51,7 @@ public class ProductDAO {
         return list;
     }
 
-    public boolean checkQuantity(String id, int quantity) throws SQLException, ClassNotFoundException {
+    public boolean checkQuantity(String id, int quantity) throws SQLException, ClassNotFoundException, NamingException {
         boolean check = false;
         Connection conn = null;
         PreparedStatement ptm = null;
@@ -76,7 +77,7 @@ public class ProductDAO {
         return check;
     }
 
-    public boolean updateQuantity(String productID, int quantity) throws ClassNotFoundException, SQLException {
+    public boolean updateQuantity(String productID, int quantity) throws ClassNotFoundException, SQLException, NamingException {
         boolean check = false;
         Connection conn = null;
         PreparedStatement ptm = null;
