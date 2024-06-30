@@ -31,12 +31,12 @@ public class AddController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-            String cmbShoes = request.getParameter("cmbShoes");
+            String cmbShoes = request.getParameter("cmbShoes");     
             String tmp[] = cmbShoes.split("-");
             String id = tmp[0];
             String name = tmp[1];
             double price = Double.parseDouble(tmp[2]);
-            int quantity = Integer.parseInt(request.getParameter("cmbQuantity"));
+            int quantity = Integer.parseInt(tmp[3]);
             String picture = tmp[4];
             String brand = tmp[5];
             Product product = new Product(id, name, price, quantity, picture, brand);
