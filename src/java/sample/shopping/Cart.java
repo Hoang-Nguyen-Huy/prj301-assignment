@@ -30,7 +30,7 @@ public class Cart {
     public void setCart(Map<String, Product> cart) {
         this.cart = cart;
     }
-
+    
     public boolean add(Product product) {
         boolean check = false;
         try {
