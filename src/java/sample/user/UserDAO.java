@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.naming.NamingException;
 import sample.utils.DBUtils;
 
 /**
@@ -26,7 +27,7 @@ public class UserDAO {
     private static final String DUPLICATE="SELECT userID, fullname, roleID FROM tblUsers WHERE userID = ?";
     private static final String INSERT="INSERT INTO tblUsers(userID, fullName, roleID, password) VALUES(?, ?, ?, ?)"   ; 
 
-    public UserDTO checkLogin(String userID, String password) throws SQLException, ClassNotFoundException {
+    public UserDTO checkLogin(String userID, String password) throws SQLException, ClassNotFoundException, NamingException {
         UserDTO user = null;
         Connection conn = null;
         PreparedStatement ptm = null;
@@ -54,7 +55,7 @@ public class UserDAO {
         return user;
     }
 
-    public List<UserDTO> getListUser(String search) throws SQLException, ClassNotFoundException {
+    public List<UserDTO> getListUser(String search) throws SQLException, ClassNotFoundException, NamingException {
         List<UserDTO> list = new ArrayList<>();
         Connection conn = null;
         PreparedStatement ptm = null;
@@ -81,7 +82,7 @@ public class UserDAO {
         return list;
     }
 
-    public boolean delete(String userID) throws SQLException, ClassNotFoundException {
+    public boolean delete(String userID) throws SQLException, ClassNotFoundException, NamingException {
         boolean check = false;
         Connection conn = null;
         PreparedStatement ptm = null;
@@ -101,7 +102,7 @@ public class UserDAO {
         return check;
     }
     
-    public boolean update(UserDTO user) throws SQLException, ClassNotFoundException {
+    public boolean update(UserDTO user) throws SQLException, ClassNotFoundException, NamingException {
         boolean check = false;
         Connection conn = null;
         PreparedStatement ptm = null;
@@ -123,7 +124,7 @@ public class UserDAO {
         return check;
     } 
 
-    public boolean checkDuplicate(String userID) throws SQLException, ClassNotFoundException {
+    public boolean checkDuplicate(String userID) throws SQLException, ClassNotFoundException, NamingException {
         boolean check = false;
         Connection conn = null;
         PreparedStatement ptm = null;
@@ -147,7 +148,7 @@ public class UserDAO {
         return check;
     }
 
-    public boolean insert(UserDTO user) throws SQLException, ClassNotFoundException {
+    public boolean insert(UserDTO user) throws SQLException, ClassNotFoundException, NamingException {
         boolean check = false;
         Connection conn = null;
         PreparedStatement ptm = null;

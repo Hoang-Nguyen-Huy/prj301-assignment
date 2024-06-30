@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.naming.NamingException;
 import sample.utils.DBUtils;
 
 /**
@@ -19,7 +20,7 @@ public class OrderDetailDAO {
 
     private static final String INSERT = "INSERT INTO orderDetail (orderID, productID, price, quantity, status) VALUES(?, ?, ?, ?, 1)";
     
-    public boolean insert(OrderDetailDTO orderDetail) throws ClassNotFoundException, SQLException {
+    public boolean insert(OrderDetailDTO orderDetail) throws ClassNotFoundException, SQLException, NamingException {
         boolean check = false;
         Connection conn = null;
         PreparedStatement ptm = null;
