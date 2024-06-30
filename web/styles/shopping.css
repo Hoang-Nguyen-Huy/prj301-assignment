@@ -8,14 +8,6 @@ and open the template in the editor.
     Author     : Dell Latitude 7490
 */
 
-.profile-menu {
-    display: flex;
-}
-
-.cards-wrapper {
-
-}
-
 .all-card {
     display: flex;
     justify-content: center;
