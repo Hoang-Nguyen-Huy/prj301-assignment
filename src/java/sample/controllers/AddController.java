@@ -37,7 +37,9 @@ public class AddController extends HttpServlet {
             String name = tmp[1];
             double price = Double.parseDouble(tmp[2]);
             int quantity = Integer.parseInt(request.getParameter("cmbQuantity"));
-            Product product = new Product(id, name, price, quantity);
+            String picture = tmp[4];
+            String brand = tmp[5];
+            Product product = new Product(id, name, price, quantity, picture, brand);
             HttpSession session = request.getSession(true);
             Cart cart = (Cart) session.getAttribute("CART");
             if (cart == null) {

@@ -123,25 +123,57 @@
             </div>
             <!--carousel of the page end here-->
 
-            <form action="MainController" method="POST">
-                Select your shoes: 
-                <select name="cmbShoes">
-                    <c:forEach var="product" items="${requestScope.LIST_PRODUCT}">
-                        <option value="${product.getId()}-${product.getName()}-${product.getPrice()}">${product.getId()}-${product.getName()}-${product.getPrice()}$</option>
-                    </c:forEach>
-                </select>
-                <select name="cmbQuantity">
-                    <option value="1">1</option>                
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="10">10</option>
-                    <option value="50">50</option>
-                </select>
-                <input type="submit" name="action" value="Add"/>
-            </form>
-            ${requestScope.MESSAGE}          
+            <!--body of the page start here-->
+            <div class="container">
+                <div id="carouselExampleIndicators" class="carousel slide mx-auto" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <form action="MainController" method="POST">
+                            <div class="cards-wrapper">
+                                <c:forEach var="product" varStatus="status" items="${requestScope.LIST_PRODUCT}">
+                                    <c:if test="${status.index < 6}">
+                                        <c:if test="${status.index % 3 == 0}">
+                                            <div class="carousel-item ${status.index == 0 ? 'active' : ''}">
+                                                <div class="row justify-content-center">
+                                                </c:if>
+                                                <div class="col-md-4 all-card">
+                                                    <div class="card mb-3 card-item">
+                                                        <div class="images-wrapper">
+                                                            <img src="${product.getPicture()}" class="card-img-top" alt="${product.getName()}">
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <h5 class="card-title">${product.getName()}</h5>
+                                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <c:if test="${status.index % 3 == 2 || status.index == requestScope.LIST_PRODUCT.size() - 1}">
+                                                </div> <!-- close row justify-content-center -->
+                                            </div> <!-- close carousel-item -->
+                                        </c:if>
+                                    </c:if>
+                                </c:forEach>
+                            </div> <!-- close cards-wrapper -->
+                        </form>
+                        ${requestScope.MESSAGE}
+                    </div> <!-- close carousel-inner -->
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div> <!-- close carousel slide -->
+            </div>
+            <!--body of the page end here-->
+
+
 
             <!--footer of the page start here-->
             <footer  class="bg-dark text-center text-white sticky-bottom">

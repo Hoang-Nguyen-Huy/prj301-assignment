@@ -12,4 +12,25 @@ and open the template in the editor.
     display: flex;
 }
 
+.cards-wrapper {
+
+}
+
+.all-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-item {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.images-wrapper {
+    display: flex;
+    height: 358px;
+}
 
