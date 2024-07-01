@@ -20,12 +20,12 @@ import sample.utils.DBUtils;
  */
 public class UserDAO {
     
-    private static final String LOGIN="SELECT userID, fullname, roleID FROM tblUsers WHERE userID = ? AND password = ?";
-    private static final String SEARCH="SELECT userID, fullname, roleID FROM tblUsers WHERE fullName LIKE ?";
+    private static final String LOGIN="SELECT userID, fullname, roleID, picture FROM tblUsers WHERE userID = ? AND password = ?";
+    private static final String SEARCH="SELECT userID, fullname, roleID, picture FROM tblUsers WHERE fullName LIKE ?";
     private static final String DELETE="DELETE tblUsers WHERE userid = ?";
     private static final String UPDATE="UPDATE tblUsers SET fullName = ?, roleID = ? WHERE userid = ?";
     private static final String DUPLICATE="SELECT userID, fullname, roleID FROM tblUsers WHERE userID = ?";
-    private static final String INSERT="INSERT INTO tblUsers(userID, fullName, roleID, password) VALUES(?, ?, ?, ?)"   ; 
+    private static final String INSERT="INSERT INTO tblUsers(userID, fullName, roleID, password, picture) VALUES(?, ?, ?, ?, ?)"   ; 
 
     public UserDTO checkLogin(String userID, String password) throws SQLException, ClassNotFoundException, NamingException {
         UserDTO user = null;
@@ -43,7 +43,8 @@ public class UserDAO {
                     String userIDfromDB = rs.getString("userID");
                     String fullName = rs.getString("fullname");
                     String roleID = rs.getString("roleID");
-                    user = new UserDTO(userIDfromDB, fullName, roleID, "***");
+                    String picture = rs.getString("picture");
+                    user = new UserDTO(userIDfromDB, fullName, roleID, "***", picture);
                 }
             }
         } finally {
@@ -71,7 +72,8 @@ public class UserDAO {
                     String fullName = rs.getString("fullname");
                     String roleID = rs.getString("roleID");
                     String password = "***";                    
-                    list.add(new UserDTO(userID, fullName, roleID, password));                    
+                    String picture = rs.getString("picture");
+                    list.add(new UserDTO(userID, fullName, roleID, password, picture));                    
                 }
             }
         } finally {
@@ -161,6 +163,7 @@ public class UserDAO {
                 ptm.setString(2, user.getFullName());
                 ptm.setString(3, user.getRoleID());
                 ptm.setString(4, user.getPassword());
+                ptm.setString(5, user.getPicture());
                 check = ptm.executeUpdate() > 0;
             }
         } finally {
