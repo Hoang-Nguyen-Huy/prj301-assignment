@@ -22,7 +22,7 @@ and open the template in the editor.
             </div>
 
             <div class="col-md-12 login-google-btn">
-                <a class="btn btn-danger google-btn" href="https://accounts.google.com/o/oauth2/auth?scope=profile email&redirect_uri=http://localhost:8084/PRJ301-T4S4-JSP_V2/LoginGoogleController&response_type=code&client_id=52455849169-e99q1kcjktks7ei0d6b60p3e5u7nv4lf.apps.googleusercontent.com&approval_prompt=force">
+                <a id="googleLoginBtn" class="btn btn-danger google-btn" href="#">
                     <!--google icon start here-->
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-google" viewBox="0 0 16 16">
                     <path d="M15.545 6.558a9.4 9.4 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.7 7.7 0 0 1 5.352 2.082l-2.284 2.284A4.35 4.35 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.8 4.8 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.7 3.7 0 0 0 1.599-2.431H8v-3.08z"/>
@@ -37,13 +37,18 @@ and open the template in the editor.
             </div>
 
             <div class="row infomationform">
-                <form action="MainController" method="POST">
+                <form id="loginForm" action="MainController" method="POST">
                     <div class="col-md-12 input-group input-group-lg">
                         <input class="form-control" type="text" name="userID" placeholder="User ID"/>
                     </div>
                     </br>
                     <div class="col-md-12 input-group input-group-lg">
                         <input class="form-control" type="password" name="password" placeholder="Password"/>
+                    </div>
+                    </br>                    
+                    <!-- reCAPTCHA -->
+                    <div class="col-md-12 recaptcha-box">
+                        <div class="g-recaptcha" data-sitekey="6LeJUQUqAAAAADWRMIOLuit5DAABD4mxadd-WKTC"></div>
                     </div>
                     </br>
                     <div class="row">
@@ -67,5 +72,8 @@ and open the template in the editor.
                 </div>
             </div>
         </div>
+            
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+        <script src="assets/js/login.js"></script>
     </body>
 </html>
