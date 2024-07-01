@@ -17,7 +17,7 @@
         <title>Checkout Page</title>
     </head>
     <body>
-        <c:if test="${sessionScope.LOGIN_USER == null}">
+        <c:if test="${sessionScope.LOGIN_USER == null || sessionScope.LOGIN_USER.roleID ne 'US'}">
             <c:redirect url="login.jsp"></c:redirect>
         </c:if>
 

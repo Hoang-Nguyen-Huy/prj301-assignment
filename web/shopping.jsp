@@ -19,6 +19,9 @@
         <link href="styles/shopping.css" rel="stylesheet">
     </head>
     <body>
+        <c:if test="${sessionScope.LOGIN_USER == null || sessionScope.LOGIN_USER.roleID ne 'US'}">
+            <c:redirect url="login.jsp"></c:redirect>
+        </c:if>
         <div>
             <!--header of the page start here-->
             <%@include file="assets/header.jsp" %>
