@@ -15,6 +15,9 @@
         <title>Tu Tu Store</title>
     </head>
     <body>
+        <c:if test="${sessionScope.LOGIN_USER == null || sessionScope.LOGIN_USER.roleID ne 'US'}">
+            <c:redirect url="login.jsp"></c:redirect>
+        </c:if>
         <h1>Your selected product here !</h1>
         <c:if test="${sessionScope.CART != null}">
             <table border="1">
