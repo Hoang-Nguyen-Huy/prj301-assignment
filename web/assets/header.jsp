@@ -78,7 +78,7 @@
                     <c:if test="${sessionScope.LOGIN_USER != null}">
                         <li class="nav-item dropdown profile-menu" style="display: flex;">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProfile" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img src="assets/avatar.jpg" width="35" height="35" class="rounded-circle">
+                                <img src="${sessionScope.LOGIN_USER.picture != null ? sessionScope.LOGIN_USER.picture : 'assets/avatar.jpg'}" width="35" height="35" class="rounded-circle">
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownProfile">
                                 <li><a class="dropdown-item" href="user.jsp">Edit Profile</a></li>
