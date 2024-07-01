@@ -1,0 +1,58 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jul 1, 2024, 6:41:44 PM
+    Author     : Dell Latitude 7490
+*/
+
+html, body {
+    height: 100%;
+    background-color: #508bfc;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.sign-up-form {
+    background-color: #ffffff;
+    text-align: center;
+    justify-content: center;
+    width: 28%;
+    height: 58%;
+    box-shadow: 0 6px 3px rgba(0, 0, 0, 0.12), 0 6px 16px rgba(0, 0, 0, 0.24);
+    border-radius: 16px;
+}
+
+.sign-up-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.error-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: red;
+}
+
+.infomationform {
+    justify-content: center;
+    align-items: center;
+}
+
+.recaptcha-box {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.direct-btn {
+    justify-content: center;
+    align-items: center;
+}
