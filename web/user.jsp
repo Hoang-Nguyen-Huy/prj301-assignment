@@ -12,18 +12,36 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>User Page</title>
+
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="styles/user.css" rel="stylesheet">
     </head>
     <body>
         <c:if test="${sessionScope.LOGIN_USER == null || sessionScope.LOGIN_USER.roleID ne 'US'}">
             <c:redirect url="login.jsp"></c:redirect>
         </c:if>
-        UserID: ${sessionScope.LOGIN_USER.userID}
-        <br> FullName ${sessionScope.LOGIN_USER.fullName}
-        </br> RoleID: ${sessionScope.LOGIN_USER.roleID}
-        </br> Password: ${sessionScope.LOGIN_USER.password}
-            
-        <form action="MainController" method="POST">
-            <input type="submit" name="action" value="View"/>
-        </form>
+
+        <!--header of the page start here-->
+        <%@include file="assets/header.jsp" %>
+        <!--header of the page end here-->
+        
+        <div class="row">
+            <!--main content of the page start here-->
+            <div class="content-wrapper">
+                <div class="main-content">
+                    UserID: ${sessionScope.LOGIN_USER.userID}
+                    <br> FullName: ${sessionScope.LOGIN_USER.fullName}
+                    </br> RoleID: ${sessionScope.LOGIN_USER.roleID}
+                    </br> Password: ${sessionScope.LOGIN_USER.password}
+                </div>
+            </div>
+            <!--main content of the page end here-->   
+        </div>
+
+        <!--footer of the page start here-->
+        <%@include file="assets/footer.jsp" %>
+        <!--footer of the page end here-->
+        
+        <script src="js/bootstrap.bundle.min.js"></script>
     </body>
 </html>
