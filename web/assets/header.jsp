@@ -81,7 +81,7 @@
                                 <img src="${sessionScope.LOGIN_USER.picture == null || sessionScope.LOGIN_USER.picture == "" ? 'assets/avatar.jpg' : sessionScope.LOGIN_USER.picture}" width="35" height="35" class="rounded-circle">
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownProfile">
-                                <li><a class="dropdown-item" href="user.jsp">Edit Profile</a></li>
+                                <li><a class="dropdown-item" href="user.jsp">View Profile</a></li>
                                 <li><button class="dropdown-item" name="action" value="Logout" type="submit">Log Out</button></li>
                             </ul>
                         </li>
