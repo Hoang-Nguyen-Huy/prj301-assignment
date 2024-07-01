@@ -33,7 +33,7 @@ public class UpdateController extends HttpServlet {
             String userID = request.getParameter("userID");
             String updateFullName = request.getParameter("fullName");
             String updateRoleID = request.getParameter("roleID");            
-            UserDTO user = new UserDTO(userID, updateFullName, updateRoleID, "");
+            UserDTO user = new UserDTO(userID, updateFullName, updateRoleID, "", "");
             UserDAO dao = new UserDAO();
             boolean checkUpdate = dao.update(user);
             if (checkUpdate) {
