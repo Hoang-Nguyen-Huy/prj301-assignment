@@ -5,79 +5,88 @@
  */
 package sample.controllers;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import org.apache.http.client.fluent.Form;
+import org.apache.http.client.fluent.Request;
+import sample.google.Constants;
 import sample.user.UserDAO;
 import sample.user.UserDTO;
 import sample.user.UserError;
+import sample.user.UserGoogleDTO;
 
 /**
  *
  * @author Dell Latitude 7490
  */
-@WebServlet(name = "CreateController", urlPatterns = {"/CreateController"})
-public class CreateController extends HttpServlet {
+@WebServlet(name = "LoginGoogleController", urlPatterns = {"/LoginGoogleController"})
+public class LoginGoogleController extends HttpServlet {
 
-    private static final String ERROR = "create.jsp";
-    private static final String SUCCESS = "login.jsp";
-           
+    private static final String ERROR = "login.jsp";
+    private static final String SUCCESS = "user.jsp";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
-        UserError userError = new UserError();
         try {
+            String code = request.getParameter("code");
+            String accessToken = getToken(code);
+            UserGoogleDTO userGoogle = getUserInfo(accessToken);
+            UserDTO user = new UserDTO(userGoogle.getEmail(), userGoogle.getName(), "US", "", userGoogle.getPicture());
             UserDAO dao = new UserDAO();
-            boolean checkValidation = true;
-            String userID = request.getParameter("userID");
-            String fullName = request.getParameter("fullName");
-            String roleID = request.getParameter("roleID");
-            String password = request.getParameter("password");
-            String confirm = request.getParameter("confirm");
-//          Validation            
-            if (userID.length() < 2 || userID.length() > 10) {
-                checkValidation = false;
-                userError.setUserIDError("UserID must be in [2, 10]");
-            }
-            
-            if (fullName.length() < 5 || fullName.length() > 50) {
-                checkValidation = false;
-                userError.setFullNameError("Full Name must be in [5, 50]");
-            }
-            
-            if (!confirm.equals(password)) {
-                checkValidation = false;
-                userError.setConfirmError(("Hai password ko giong nhau kia"));
-            }
-
-            if (checkValidation) {
-                UserDTO user = new UserDTO(userID, fullName, roleID, password, "");
+            HttpSession session = request.getSession();
+            boolean checkExist = dao.checkDuplicate(user.getUserID());
+            if (!checkExist) {
+                UserError userError = new UserError();
                 boolean checkInsert = dao.insert(user);
                 if (checkInsert) {
+                    session.setAttribute("LOGIN_USER", user);
                     url = SUCCESS;
                 } else {
                     userError.setError("Unknown Error!");
                     request.setAttribute("USER_ERROR", userError);
                 }
             } else {
-                request.setAttribute("USER_ERROR", userError);
+                session.setAttribute("LOGIN_USER", user);
+                url = SUCCESS;
             }
-                    
-        } catch(Exception e) {
-            log("Error at CreateController: " + e.toString());
-            if(e.toString().contains("duplicate")) {
-                userError.setUserIDError("Duplicate userID !");
-                request.setAttribute("USER_ERROR", userError);
-            }
+        } catch (Exception e) {
+            log("Error at LoginGoogleController: " + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
-                    
         }
-              
+    }
+
+    public static String getToken(String code) throws IOException {
+        // cal api to get token
+        String response = Request.Post(Constants.GOOGLE_LINK_GET_TOKEN)
+                .bodyForm(Form.form().add("client_id", Constants.GOOGLE_CLIENT_ID)
+                        .add("client_secret", Constants.GOOGLE_CLIENT_SECRET)
+                        .add("redirect_uri", Constants.GOOGLE_REDIRECT_URI).add("code", code)
+                        .add("grant_type", Constants.GOOGLE_GRANT_TYPE).build())
+                .execute().returnContent().asString();
+
+        JsonObject jobj = new Gson().fromJson(response, JsonObject.class);
+        String accessToken = jobj.get("access_token").toString().replaceAll("\"", "");
+        return accessToken;
+    }
+
+    public static UserGoogleDTO getUserInfo(String accessToken) throws IOException {
+        String link = Constants.GOOGLE_LINK_GET_USER_INFO + accessToken;
+        String response = Request.Get(link).execute().returnContent().asString();
+        System.out.println(response);
+        UserGoogleDTO googlePojo = new Gson().fromJson(response, UserGoogleDTO.class);
+
+        return googlePojo;
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
