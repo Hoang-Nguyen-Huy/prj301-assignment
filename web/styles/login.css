@@ -22,7 +22,7 @@ html, body {
     text-align: center;
     justify-content: center;
     width: 28%;
-    height: 54%;
+    height: 64%;
     box-shadow: 0 6px 3px rgba(0, 0, 0, 0.12), 0 6px 16px rgba(0, 0, 0, 0.24);
     border-radius: 16px;
 }
@@ -56,8 +56,14 @@ html, body {
     align-items: center;
 }
 
+.recaptcha-box {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
 .login-reset-btn {
-    
+
 }
 
 .direct-btn {
