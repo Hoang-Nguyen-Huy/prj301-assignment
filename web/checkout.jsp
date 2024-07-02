@@ -15,47 +15,74 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Checkout Page</title>
+
+        <link href="styles/checkout.css" rel="stylesheet">
+        <link href="css/bootstrap.min.css" rel="stylesheet">        
     </head>
     <body>
         <c:if test="${sessionScope.LOGIN_USER == null || sessionScope.LOGIN_USER.roleID ne 'US'}">
             <c:redirect url="login.jsp"></c:redirect>
         </c:if>
 
-        <c:if test="${requestScope.ORDER != null}">
-            <h3>Ma dat hang: ${requestScope.ORDER.getOrderID()}, Nguoi mua: ${requestScope.ORDER.getUserID()}, Tong tien: ${requestScope.ORDER.getTotal()}$, Ngay checkout: ${requestScope.ORDER.getDate()}</h3>
+        <!--header of the page start here-->
+        <%@include file="assets/header.jsp" %>
+        <!--header of the page end here-->
 
-            <table border="1">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>OrderID</th>
-                        <th>ProductID</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <c:forEach var="orderDetail" varStatus="counter" items="${requestScope.LIST_ORDER_DETAIL}">
-                        <tr>
-                            <td>${counter.count}</td>
-                            <td>${orderDetail.getOrderID()}</td>
-                            <td>${orderDetail.getProductID()}</td>
-                            <td>${orderDetail.getPrice()}$</td>
-                            <td>${orderDetail.getQuantity()}</td>
-                        </tr> 
-                    </c:forEach>
-                </tbody>
-            </table>    
-        </c:if>   
-        <h1 style="color: red">${requestScope.ERROR_MESSAGE}</h1>
-        <h1 style="color: red">${requestScope.ERROR_CART_MESSAGE}</h1>
+        <div class="content-wrapper">
+            <div class="row">
+                <c:if test="${requestScope.ORDER != null}">
+                    <h3>Buyer: ${requestScope.ORDER.getUserID()}</h3>
 
-        <a href="MainController?action=Shopping_Page">Buy more !</a>
-        <form action="MainController" method="POST">
-            <button type="submit" name="action" value="View">
-                Back to Cart
-            </button>
-        </form>
+                    <div class="col-md-12">
+                        <table border="1" class="table table-hover table-bordered checkout-content">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>OrderID</th>
+                                    <th>ProductID</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <c:forEach var="orderDetail" varStatus="counter" items="${requestScope.LIST_ORDER_DETAIL}">
+                                    <tr>
+                                        <td>${counter.count}</td>
+                                        <td>${orderDetail.getOrderID()}</td>
+                                        <td>${orderDetail.getProductID()}</td>
+                                        <td>${orderDetail.getPrice()}$</td>
+                                        <td>${orderDetail.getQuantity()}</td>
+                                    </tr> 
+                                </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
 
+                    <div class="col-md-6 content-footer">
+                        <h3>Checkout date: ${requestScope.ORDER.getDate()}</h3>
+                    </div>
+
+                    <div class="col-md-6 content-footer">
+                        <h3>Total: ${requestScope.ORDER.getTotal()}$</h3>
+                    </div>
+                </c:if>   
+                <h1 style="color: red">${requestScope.ERROR_MESSAGE}</h1>
+                <h1 style="color: red">${requestScope.ERROR_CART_MESSAGE}</h1>
+
+                <div class="col-md-12 text-end">
+                    <form action="MainController" method="POST">
+                        <button type="submit" class="btn btn-primary" name="action" value="View">
+                            Back to Cart
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!--footer of the page start here-->
+        <%@include file="assets/footer.jsp" %>
+        <!--footer of the page end here-->
+
+        <script src="js/bootstrap.bundle.min.js"></script>
     </body>
 </html>
