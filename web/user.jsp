@@ -25,7 +25,7 @@
         <%@include file="assets/header.jsp" %>
         <!--header of the page end here-->
         
-        <div class="row">
+        <div>
             <!--main content of the page start here-->
             <div class="content-wrapper">
                 <div class="main-content">
