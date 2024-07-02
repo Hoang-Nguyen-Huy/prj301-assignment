@@ -58,6 +58,9 @@ public class MainController extends HttpServlet {
     private static final String CHECK_OUT="Checkout";
     private static final String CHECK_OUT_CONTROLLER="CheckoutController";
     
+    private static final String SEND_MAIL="SendMail";
+    private static final String SEND_MAIL_CONTROLLER="SendMailController";
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -90,6 +93,8 @@ public class MainController extends HttpServlet {
                 url = EDIT_CONTROLLER;
             } else if (CHECK_OUT.equals(action)) {
                 url = CHECK_OUT_CONTROLLER;
+            } else if (SEND_MAIL.equals(action)) {
+                url = SEND_MAIL_CONTROLLER;
             }
         } catch(Exception e) {
             log("Error at MainControlller: " + e.toString());
