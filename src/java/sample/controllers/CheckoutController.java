@@ -45,7 +45,7 @@ public class CheckoutController extends HttpServlet {
             UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
             // Check session
             Cart cart = (Cart) session.getAttribute("CART");
-            
+                                  
             // Check cart
             if (cart != null) {
                 ProductDAO dao = new ProductDAO();
