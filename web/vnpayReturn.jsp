@@ -32,11 +32,11 @@
         <c:if test="${sessionScope.LOGIN_USER == null || sessionScope.LOGIN_USER.roleID ne 'US'}">
             <c:redirect url="login.jsp"></c:redirect>
         </c:if>
-        
+
         <!--header of the page start here-->
         <%@include file="assets/header.jsp" %>
         <!--header of the page end here-->
-        
+
         <%
             //Begin process return from VNPAY
             Map fields = new HashMap();
@@ -109,6 +109,21 @@
                         %></label>
                 </div> 
             </div>
+
+            <div class="row">
+                <form action="MainController" method="POST">
+                    <div class="col-md-3">
+                        <input class="form-control" type="email" name="emailToSent" placeholder="Email"/>
+
+                    </div>                            
+
+                    <div class="col-md-3 send-mail-btn">
+                        <input type="hidden" name="orderToSent" value="Ma dat hang: ${param.vnp_TxnRef}, Tong tien: ${param.vnp_Amount}, Ngan hang: ${param.vnp_BankCode}"/>
+                        <input class="btn btn-success" type="submit" name="action" value="SendMail"/>
+                    </div>                                
+                </form>                                                                      
+            </div>
+            
             <p>
                 &nbsp;
             </p>
@@ -116,11 +131,11 @@
                 <p>&copy; VNPAY 2020</p>
             </footer>
         </div>   
-                              
+
         <!--footer of the page start here-->
         <%@include file="assets/footer.jsp" %>
         <!--footer of the page end here-->
-        
+
         <script src="js/bootstrap.bundle.min.js"></script>  
     </body>
 </html>

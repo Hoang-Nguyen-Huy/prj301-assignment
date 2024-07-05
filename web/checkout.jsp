@@ -66,31 +66,13 @@
                         <h3>Total: ${requestScope.ORDER.getTotal()}$</h3>
                     </div>
 
-                    <div class="row">
-                        <form action="MainController" method="POST">
-                            <div class="col-md-3">
-                                <input class="form-control" type="email" name="emailToSent" placeholder="Email"/>
-
-                            </div>                            
-
-                            <div class="col-md-3 send-mail-btn">
-                                <input type="hidden" name="orderToSent" value="Ma dat hang: ${requestScope.ORDER.getOrderID()}, Nguoi mua: ${requestScope.ORDER.getUserID()}, Tong tien: ${requestScope.ORDER.getTotal()}$, Ngay checkout: ${requestScope.ORDER.getDate()}"/>
-                                <input class="btn btn-success" type="submit" name="action" value="SendMail"/>
-                            </div>                                
-                        </form>                                                                      
-                    </div>
-
                     <div class="col-md-12 text-end">
                         <a type="button" class="btn btn-success" href="MainController?action=Payment&orderID=${requestScope.ORDER.getOrderID()}&total=${requestScope.ORDER.getTotal()}">Payment</a>
                     </div>
                 </c:if>   
 
-                <c:if test="${requestScope.SEND_MAIL_SUCCESS == null && requestScope.SEND_MAIL_ERROR == null}">
-                    <h1 style="color: red">${requestScope.ERROR_MESSAGE}</h1>
-                    <h1 style="color: red">${requestScope.ERROR_CART_MESSAGE}</h1>
-                </c:if>
-                <h1 style="color: red">${requestScope.SEND_MAIL_SUCCESS}</h1>
-                <h1 style="color: red">${requestScope.SEND_MAIL_ERROR}</h1>            
+                <h1 style="color: red">${requestScope.ERROR_MESSAGE}</h1>
+                <h1 style="color: red">${requestScope.ERROR_CART_MESSAGE}</h1>
 
             </div>
         </div>

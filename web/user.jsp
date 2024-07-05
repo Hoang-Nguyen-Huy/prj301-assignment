@@ -24,7 +24,7 @@
         <!--header of the page start here-->
         <%@include file="assets/header.jsp" %>
         <!--header of the page end here-->
-        
+
         <div>
             <!--main content of the page start here-->
             <div class="content-wrapper">
@@ -35,13 +35,16 @@
                     </br> Password: ${sessionScope.LOGIN_USER.password}
                 </div>
             </div>
-            <!--main content of the page end here-->   
+            <!--main content of the page end here--> 
+
+            <h1 style="color: white">${requestScope.SEND_MAIL_SUCCESS}</h1>
+            <h1 style="color: white">${requestScope.SEND_MAIL_ERROR}</h1>  
         </div>
 
         <!--footer of the page start here-->
         <%@include file="assets/footer.jsp" %>
         <!--footer of the page end here-->
-        
+
         <script src="js/bootstrap.bundle.min.js"></script>
     </body>
 </html>
