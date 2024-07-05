@@ -6,7 +6,6 @@
 package sample.controllers;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,8 +20,8 @@ import sample.mail.Email;
 @WebServlet(name = "SendMailController", urlPatterns = {"/SendMailController"})
 public class SendMailController extends HttpServlet {
 
-    private static final String ERROR = "CheckoutController";
-    private static final String SUCCESS = "CheckoutController";
+    private static final String ERROR = "user.jsp";
+    private static final String SUCCESS = "user.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
