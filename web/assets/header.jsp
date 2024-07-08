@@ -27,7 +27,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">All Feature</a>
+                        <a class="nav-link" href="MainController?action=All_Products_Page">All Features</a>
                     </li>
 
                     <li class="nav-item">
