@@ -63,6 +63,9 @@ public class MainController extends HttpServlet {
     
     private static final String PAYMENT="Payment";
     private static final String PAYMENT_CONTROLLER="PaymentController";
+    
+    private static final String ALL_PRODUCTS="All_Products_Page";
+    private static final String ALL_PRODUCTS_CONTROLLER="AllProductsController";
         
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -100,6 +103,8 @@ public class MainController extends HttpServlet {
                 url = SEND_MAIL_CONTROLLER;
             } else if (PAYMENT.equals(action)) {
                 url = PAYMENT_CONTROLLER;
+            } else if (ALL_PRODUCTS.equals(action)) {
+                url = ALL_PRODUCTS_CONTROLLER;
             }
         } catch(Exception e) {
             log("Error at MainControlller: " + e.toString());
