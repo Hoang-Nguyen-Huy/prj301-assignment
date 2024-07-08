@@ -97,7 +97,8 @@
             <%@include file="assets/footer.jsp" %>
             <!--footer of the page end here-->
         </div>
-
+            
+        <script src="assets/js/section.js"></script>
         <script src="js/bootstrap.bundle.min.js"></script>
     </body>
 </html>
