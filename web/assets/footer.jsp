@@ -6,7 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<footer  class="bg-dark text-center text-white sticky-bottom">
+<footer id="aboutSection"  class="bg-dark text-center text-white sticky-bottom">
     <!--Grid container-->
     <div class="container p-4">
         <!--Section: Social media-->

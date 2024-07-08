@@ -77,6 +77,7 @@
         <%@include file="assets/footer.jsp" %>
         <!--footer of the page end here-->
 
+        <script src="assets/js/section.js"></script>
         <script src="js/bootstrap.bundle.min.js"></script>      
         <script src="https://pay.vnpay.vn/lib/vnpay/vnpay.min.js"></script>
         <script type="text/javascript">
