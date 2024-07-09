@@ -36,8 +36,8 @@
                 </ul>
                 <!--Search, Cart, Profile--> 
                 <form class="d-flex" action="MainController" method="POST">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="searchProduct" value="${param.searchProduct}">
+                    <button class="btn btn-outline-success" type="submit" name="action" value="SearchProduct">Search</button>
 
                     <button class="btn btn-outline-success ms-2 position-relative" type="submit" name="action" value="View">                                        
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">

@@ -22,7 +22,7 @@
 
         <div class="container">
             <div class="row">
-                <c:forEach var="product" items="${requestScope.LIST_ALL_PRODUCTS}">
+                <c:forEach var="product" items="${requestScope.LIST_SHOPPING_PRODUCTS}">
                     <div class="col-md-3 main-content">
                         <div class="card card-item" style="width: 18rem;">
                             <img src="${product.getPicture()}" class="card-img-top" alt="${product.getName()}">

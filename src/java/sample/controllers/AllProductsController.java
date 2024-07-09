@@ -31,9 +31,9 @@ public class AllProductsController extends HttpServlet {
         String url = ERROR;
         try {
             ProductDAO dao = new ProductDAO();
-            List <Product> listProduct = dao.getListProduct();
+            List <Product> listProduct = dao.getListProduct("");
             if (listProduct.size() > 0) {
-                request.setAttribute("LIST_ALL_PRODUCTS", listProduct);
+                request.setAttribute("LIST_SHOPPING_PRODUCTS", listProduct);
                 url = SUCCESS;
             }
         } catch(Exception e) {
