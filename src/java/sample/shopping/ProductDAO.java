@@ -19,39 +19,10 @@ import sample.utils.DBUtils;
  * @author Dell Latitude 7490
  */
 public class ProductDAO {
-    
-    private static final String GET = "SELECT productID, name, price, quantity, picture, brand FROM products";
+
     private static final String GET_QUANTITY = "SELECT quantity FROM products WHERE productID = ?";
     private static final String UPDATE_QUANTITY = "UPDATE products SET quantity = ? WHERE productID = ?";
-
-    public List<Product> getListProduct() throws SQLException, ClassNotFoundException, NamingException {
-        List<Product> list = new ArrayList<>();
-        Connection conn = null;
-        PreparedStatement ptm = null;
-        ResultSet rs = null;
-        try {
-            conn = DBUtils.getConnection();
-            if (conn != null) {
-                ptm = conn.prepareStatement(GET);
-                rs = ptm.executeQuery();
-                while(rs.next()) {
-                    String productID = rs.getString("productID");
-                    String name = rs.getString("name");
-                    double price = rs.getDouble("price");
-                    int quantity = rs.getInt("quantity");
-                    String picture = rs.getString("picture");
-                    String brand = rs.getString("brand");
-                    
-                    list.add(new Product(productID, name, price, quantity, picture, brand));
-                }
-            }
-        } finally {
-            if (rs != null) rs.close();
-            if (ptm != null) ptm.close();
-            if (conn != null) conn.close();
-        }
-        return list;
-    }
+    private static final String SEARCH = "SELECT productID, name, price, quantity, picture, brand FROM products WHERE name LIKE ?";
 
     public boolean checkQuantity(String id, int quantity) throws SQLException, ClassNotFoundException, NamingException {
         boolean check = false;
@@ -70,11 +41,17 @@ public class ProductDAO {
                         check = true;
                     }
                 }
-            }   
+            }
         } finally {
-            if (rs != null) rs.close();
-            if (ptm != null) ptm.close();
-            if (conn != null) conn.close();
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
         return check;
     }
@@ -105,14 +82,55 @@ public class ProductDAO {
                 ptm.setInt(1, newQuantity);
                 ptm.setString(2, productID);
                 check = ptm.executeUpdate() > 0;
-            }   
+            }
         } finally {
-            if (rs != null) rs.close();
-            if (ptm != null) ptm.close();
-            if (conn != null) conn.close();
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
         return check;
     }
-    
-    
+
+    public List<Product> getListProduct(String search) throws ClassNotFoundException, SQLException, NamingException {
+        List<Product> list = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(SEARCH);
+                ptm.setString(1, "%" + search + "%");
+                rs = ptm.executeQuery();
+                while (rs.next()) {
+                    String productID = rs.getString("productID");
+                    String name = rs.getString("name");
+                    double price = rs.getDouble("price");
+                    int quantity = rs.getInt("quantity");
+                    String picture = rs.getString("picture");
+                    String brand = rs.getString("brand");
+
+                    list.add(new Product(productID, name, price, quantity, picture, brand));
+                }
+            }
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return list;
+    }
+
 }
