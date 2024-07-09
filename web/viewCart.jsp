@@ -52,7 +52,7 @@
                                     <tr>
                                         <td>${counter.count}</td>
                                         <td>${product.getId()}</td>
-                                        <td>${product.getName()}</td>
+                                        <td>${product.getName()}</td>                                       
                                         <td>
                                             <input type="number" name="quantity" value="${product.getQuantity()}" required="" min="1"/>
                                         </td>
