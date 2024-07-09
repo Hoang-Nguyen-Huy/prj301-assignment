@@ -8,12 +8,19 @@ and open the template in the editor.
     Author     : Dell Latitude 7490
 */
 
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
 .content-wrapper {
     flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 80px; 
+    overflow: auto;
 }
 
 .main-content {
@@ -26,10 +33,5 @@ and open the template in the editor.
 
 .checkout {
     margin-top: 8px;
-}
-
-footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+    margin-bottom: 16px;
 }
