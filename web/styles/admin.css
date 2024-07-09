@@ -1,0 +1,30 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jul 9, 2024, 8:42:04 PM
+    Author     : Dell Latitude 7490
+*/
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    flex: 1;
+    overflow: auto;
+}
+
+.main-content {
+    margin-top: 68px;
+    flex-grow: 1;
+}
+
+.main-content {
+    margin-top: 68px;
+    height: 100%;
+}
