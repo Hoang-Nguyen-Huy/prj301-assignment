@@ -69,6 +69,9 @@ public class MainController extends HttpServlet {
     
     private static final String SEARCH_PRODUCT="SearchProduct";
     private static final String SEARCH_PRODUCT_CONTROLLER="SearchProductController";
+    
+    private static final String TOP_1="Top_1";
+    private static final String TOP_1_CONTROLLER="Top1Controller";
         
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -110,6 +113,8 @@ public class MainController extends HttpServlet {
                 url = ALL_PRODUCTS_CONTROLLER;
             } else if (SEARCH_PRODUCT.equals(action)) {
                 url = SEARCH_PRODUCT_CONTROLLER;
+            } else if (TOP_1.equals(action)) {
+                url = TOP_1_CONTROLLER;
             }
         } catch(Exception e) {
             log("Error at MainControlller: " + e.toString());

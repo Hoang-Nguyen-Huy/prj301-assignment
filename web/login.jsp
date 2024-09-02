@@ -63,11 +63,15 @@ and open the template in the editor.
             </div>
 
             <div class="row direct-btn">
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <a href="MainController?action=Create_Page">Create User</a>
                 </div>
+                
+                <div class="col-md-4">
+                    <a href="MainController?action=Top_1">Top User</a>
+                </div>
 
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <a href="MainController?action=Shopping_Page">Go to Tu Tu Store</a>
                 </div>
             </div>

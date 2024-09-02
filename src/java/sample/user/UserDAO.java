@@ -25,7 +25,8 @@ public class UserDAO {
     private static final String DELETE="DELETE tblUsers WHERE userid = ?";
     private static final String UPDATE="UPDATE tblUsers SET fullName = ?, roleID = ? WHERE userid = ?";
     private static final String DUPLICATE="SELECT userID, fullname, roleID FROM tblUsers WHERE userID = ?";
-    private static final String INSERT="INSERT INTO tblUsers(userID, fullName, roleID, password, picture) VALUES(?, ?, ?, ?, ?)"   ; 
+    private static final String INSERT="INSERT INTO tblUsers(userID, fullName, roleID, password, picture) VALUES(?, ?, ?, ?, ?)";
+    private static final String TOP_1="SELECT TOP 1 userID, fullName FROM tblUsers";
 
     public UserDTO checkLogin(String userID, String password) throws SQLException, ClassNotFoundException, NamingException {
         UserDTO user = null;
@@ -172,6 +173,31 @@ public class UserDAO {
             if (conn != null) conn.close();
         }
         return check;
+    }
+
+    public UserDTO getTop1() throws ClassNotFoundException, SQLException, NamingException {
+        UserDTO user = null;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(TOP_1);
+                rs = ptm.executeQuery();
+                if (rs.next()) {
+                    String userIDfromDB = rs.getString("userID");
+                    String fullName = rs.getString("fullname");
+                    user = new UserDTO(userIDfromDB, fullName, "", "***", "");
+                }
+            }
+        } finally {
+            if (rs != null) rs.close();
+            if (ptm != null) ptm.close();
+            if (conn != null) conn.close();
+        }
+              
+        return user;
     }
     
 }
