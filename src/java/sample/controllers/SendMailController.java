@@ -1,46 +1,47 @@
-package sample.controllers;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package sample.controllers;
 
 import java.io.IOException;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import sample.shopping.Product;
-import sample.shopping.ProductDAO;
+import sample.mail.Email;
 
 /**
  *
  * @author Dell Latitude 7490
  */
-@WebServlet(urlPatterns = {"/ShopController"})
-public class ShopController extends HttpServlet {
+@WebServlet(name = "SendMailController", urlPatterns = {"/SendMailController"})
+public class SendMailController extends HttpServlet {
 
-    private static final String ERROR = "shopping.jsp";
-    private static final String SUCCESS = "shopping.jsp";
-    
+    private static final String ERROR = "user.jsp";
+    private static final String SUCCESS = "user.jsp";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-            ProductDAO dao = new ProductDAO();
-            List<Product> listProduct = dao.getListProduct("");
-            if (listProduct.size() > 0) {
-                request.setAttribute("LIST_PRODUCT", listProduct);
+            Email handleEmail = new Email();
+            String cusEmail = request.getParameter("emailToSent");
+            String msg = request.getParameter("orderToSent");
+            boolean sendMail = handleEmail.sendEmail("Đây là thông tin và mã đặt hàng của bạn", msg, cusEmail);
+            if (sendMail) {
                 url = SUCCESS;
+                request.setAttribute("SEND_MAIL_SUCCESS", "Please check your email");
+            } else {
+                request.setAttribute("SEND_MAIL_ERROR", "Something went wrong");
             }
-        } catch(Exception e) {
-            log("Error at ShopController: " + e.toString());
+        } catch (Exception e) {
+            log("Error at SendMailController: " + e.toString());
         } finally {
-            request.getRequestDispatcher(url).forward(request, response);
+            request.getRequestDispatcher(url).include(request, response);
         }
     }
 

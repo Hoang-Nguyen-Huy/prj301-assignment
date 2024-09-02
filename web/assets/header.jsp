@@ -12,7 +12,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
             <!--Logo-->
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="MainController?action=Shopping_Page">
                 <img src="assets/logo.png" width="40" height="40">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,38 +26,18 @@
                         <a class="nav-link active" aria-current="page" href="#">Home</a>
                     </li>
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Men
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Sport</a></li>
-                            <li><a class="dropdown-item" href="#">Luxury</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Women
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Sport</a></li>
-                            <li><a class="dropdown-item" href="#">Luxury</a></li>
-                        </ul>
+                    <li class="nav-item">
+                        <a class="nav-link" href="MainController?action=All_Products_Page">All Features</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Kids</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
+                        <a class="nav-link" href="#aboutSection">About</a>
                     </li>
                 </ul>
                 <!--Search, Cart, Profile--> 
                 <form class="d-flex" action="MainController" method="POST">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="searchProduct" value="${param.searchProduct}">
+                    <button class="btn btn-outline-success" type="submit" name="action" value="SearchProduct">Search</button>
 
                     <button class="btn btn-outline-success ms-2 position-relative" type="submit" name="action" value="View">                                        
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">

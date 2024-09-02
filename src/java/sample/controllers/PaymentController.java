@@ -1,44 +1,44 @@
-package sample.controllers;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package sample.controllers;
 
 import java.io.IOException;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import sample.shopping.Product;
-import sample.shopping.ProductDAO;
 
 /**
  *
  * @author Dell Latitude 7490
  */
-@WebServlet(urlPatterns = {"/ShopController"})
-public class ShopController extends HttpServlet {
+@WebServlet(name = "PaymentController", urlPatterns = {"/PaymentController"})
+public class PaymentController extends HttpServlet {
 
-    private static final String ERROR = "shopping.jsp";
-    private static final String SUCCESS = "shopping.jsp";
-    
+    private static final String ERROR = "payment.jsp";
+    private static final String SUCCESS = "payment.jsp";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-            ProductDAO dao = new ProductDAO();
-            List<Product> listProduct = dao.getListProduct("");
-            if (listProduct.size() > 0) {
-                request.setAttribute("LIST_PRODUCT", listProduct);
+            String orderID = request.getParameter("orderID");
+            double totalPrice = Double.parseDouble(request.getParameter("total"));
+            
+            if (orderID != null) {
+                request.setAttribute("ORDER_ID", orderID);
+                request.setAttribute("TOTAL_PRICE", totalPrice);
                 url = SUCCESS;
+            } else {
+                request.setAttribute("ERROR_MESSAGE", "Something invalid");
             }
-        } catch(Exception e) {
-            log("Error at ShopController: " + e.toString());
+        } catch (Exception e) {
+            log("Error at PaymentController: " + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

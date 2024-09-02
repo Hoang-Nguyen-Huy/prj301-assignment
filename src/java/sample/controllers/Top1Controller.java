@@ -1,44 +1,42 @@
-package sample.controllers;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package sample.controllers;
 
 import java.io.IOException;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import sample.shopping.Product;
-import sample.shopping.ProductDAO;
+import sample.user.UserDAO;
+import sample.user.UserDTO;
 
 /**
  *
  * @author Dell Latitude 7490
  */
-@WebServlet(urlPatterns = {"/ShopController"})
-public class ShopController extends HttpServlet {
+@WebServlet(name = "Top1Controller", urlPatterns = {"/Top1Controller"})
+public class Top1Controller extends HttpServlet {
 
-    private static final String ERROR = "shopping.jsp";
-    private static final String SUCCESS = "shopping.jsp";
+    private static final String ERROR = "top1.jsp";
+    private static final String SUCCESS = "top1.jsp";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-            ProductDAO dao = new ProductDAO();
-            List<Product> listProduct = dao.getListProduct("");
-            if (listProduct.size() > 0) {
-                request.setAttribute("LIST_PRODUCT", listProduct);
+            UserDAO dao = new UserDAO();
+            UserDTO topUser = dao.getTop1();
+            if (topUser != null) {
+                request.setAttribute("TOP_1_USER", topUser);
                 url = SUCCESS;
             }
         } catch(Exception e) {
-            log("Error at ShopController: " + e.toString());
+            log("Error at Top1Controller: " + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
