@@ -1,10 +1,9 @@
-package sample.controllers;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package sample.controllers;
 
 import java.io.IOException;
 import java.util.List;
@@ -20,25 +19,26 @@ import sample.shopping.ProductDAO;
  *
  * @author Dell Latitude 7490
  */
-@WebServlet(urlPatterns = {"/ShopController"})
-public class ShopController extends HttpServlet {
+@WebServlet(name = "SearchProductController", urlPatterns = {"/SearchProductController"})
+public class SearchProductController extends HttpServlet {
 
-    private static final String ERROR = "shopping.jsp";
-    private static final String SUCCESS = "shopping.jsp";
+    private static final String ERROR = "AllProductsController";
+    private static final String SUCCESS = "allProducts.jsp";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
+            String search = request.getParameter("searchProduct");
             ProductDAO dao = new ProductDAO();
-            List<Product> listProduct = dao.getListProduct("");
+            List<Product> listProduct = dao.getListProduct(search);
             if (listProduct.size() > 0) {
-                request.setAttribute("LIST_PRODUCT", listProduct);
+                request.setAttribute("LIST_SHOPPING_PRODUCTS", listProduct);
                 url = SUCCESS;
             }
         } catch(Exception e) {
-            log("Error at ShopController: " + e.toString());
+            log("Error at SearchProductController" + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

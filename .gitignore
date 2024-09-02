@@ -1,5 +1,8 @@
 *.class
 
+# Key for Login with Google
+Constants.java
+
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
