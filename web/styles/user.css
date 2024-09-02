@@ -1,0 +1,35 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jul 1, 2024, 10:49:02 PM
+    Author     : Dell Latitude 7490
+*/
+body, html {
+    background-color: #508bfc;
+}
+
+.content-wrapper {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 180px; 
+}
+
+.main-content {
+    width: 16%;
+    text-align: center; 
+    background-color: white;
+    box-shadow: 0 6px 3px rgba(0, 0, 0, 0.12), 0 6px 16px rgba(0, 0, 0, 0.24);
+    border-radius: 16px;
+}
+
+/* Ensure footer is always at the bottom */
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}

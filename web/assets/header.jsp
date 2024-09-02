@@ -12,7 +12,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
             <!--Logo-->
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="MainController?action=Shopping_Page">
                 <img src="assets/logo.png" width="40" height="40">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,32 +26,12 @@
                         <a class="nav-link active" aria-current="page" href="#">Home</a>
                     </li>
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Men
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Sport</a></li>
-                            <li><a class="dropdown-item" href="#">Luxury</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Women
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Sport</a></li>
-                            <li><a class="dropdown-item" href="#">Luxury</a></li>
-                        </ul>
+                    <li class="nav-item">
+                        <a class="nav-link" href="MainController?action=All_Products_Page">All Features</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Kids</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
+                        <a class="nav-link" href="#aboutSection">About</a>
                     </li>
                 </ul>
                 <!--Search, Cart, Profile--> 
