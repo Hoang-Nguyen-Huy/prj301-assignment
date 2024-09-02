@@ -3,6 +3,9 @@
 # Key for Login with Google
 Constants.java
 
+# Key for pay with VnPay
+Config.java
+
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
